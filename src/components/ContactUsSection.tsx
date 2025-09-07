@@ -3,9 +3,10 @@ import { Mail, Phone, Send, Loader } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // EmailJS configuration - move these to environment variables
-const EMAILJS_SERVICE_ID = import.meta.env.REACT_APP_EMAILJS_SERVICE_ID!;
-const EMAILJS_TEMPLATE_ID = import.meta.env.REACT_APP_EMAILJS_TEMPLATE_ID!;
-const EMAILJS_PUBLIC_KEY = import.meta.env.REACT_APP_EMAILJS_PUBLIC_KEY!;
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID!;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!;
 
 interface FormData {
   fullName: string;
@@ -14,6 +15,7 @@ interface FormData {
 }
 
 const ContactUsSection = () => {
+  console.log(EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID);
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -57,6 +59,7 @@ const ContactUsSection = () => {
         from_email: formData.email,
         message: formData.message,
         to_email: "kayode@intzom.co.uk", // Primary recipient
+        // to_email: "kayodeoshodi400@gmail.com", // Primary recipient
         cc_email: "info@intzom.co.uk", // CC recipient
         reply_to: formData.email,
       };
